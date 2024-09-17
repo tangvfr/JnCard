@@ -1,8 +1,11 @@
 package fr.tangv.pickdeckcard.model.player;
 
-public interface Player {
+import fr.tangv.pickdeckcard.model.util.Connection;
+
+public interface Player extends Connection {
 
     String getName();
     String getUUID();
+    boolean isGuest();
 
 }

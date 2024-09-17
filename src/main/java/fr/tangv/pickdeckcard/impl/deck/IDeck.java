@@ -1,13 +1,12 @@
 package fr.tangv.pickdeckcard.impl.deck;
 
-import fr.tangv.pickdeckcard.model.card.Card;
 import fr.tangv.pickdeckcard.model.deck.Deck;
 
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Random;
 
-public class IDeck<T extends Card> implements Deck<T> {
+public class IDeck<T> implements Deck<T> {
 
     private Deque<T> cards;
 

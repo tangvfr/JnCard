@@ -1,7 +1,7 @@
 package fr.tangv.pickdeckcard.impl.deck;
 
 import fr.tangv.pickdeckcard.impl.card.ICard;
-import fr.tangv.pickdeckcard.model.card.Card;
+import fr.tangv.pickdeckcard.model.card.JnCard;
 import fr.tangv.pickdeckcard.model.card.CardSymbol;
 import fr.tangv.pickdeckcard.model.card.CardType;
 import fr.tangv.pickdeckcard.model.card.CardValue;
@@ -9,7 +9,7 @@ import fr.tangv.pickdeckcard.model.deck.Deck;
 
 import java.util.Arrays;
 
-public class DeckFactory {
+public class JnDeckFactory {
 
     public static final CardSymbol[] HEARTH_SYMBOLS = {CardSymbol.HEART, CardSymbol.DIAMOND};
     public static final CardSymbol[] ATTACK_SYMBOLS = {CardSymbol.CLUB, CardSymbol.SPADE};
@@ -22,25 +22,25 @@ public class DeckFactory {
                 .toArray(CardValue[]::new);
     }
 
-    public static void appendCards(Deck<Card> deck, CardSymbol[] symbols, CardValue[] values) {
+    public static void appendCards(Deck<JnCard> deck, CardSymbol[] symbols, CardValue[] values) {
         for (CardSymbol symbol : symbols) {
             for (CardValue value : values) {
-                deck.add(ICard.createCard(value, symbol));
+                deck.add(ICard.create(value, symbol));
             }
         }
     }
 
-    public static Deck<Card> createEmptyDeck() {
+    public static Deck<JnCard> createEmptyDeck() {
         return new IDeck<>();
     }
 
-    public static Deck<Card> createDeck(CardSymbol[] symbols, CardValue[] values) {
-        Deck<Card> deck = DeckFactory.createEmptyDeck();
-        DeckFactory.appendCards(deck, symbols, values);
+    public static Deck<JnCard> createDeck(CardSymbol[] symbols, CardValue[] values) {
+        Deck<JnCard> deck = JnDeckFactory.createEmptyDeck();
+        JnDeckFactory.appendCards(deck, symbols, values);
         return deck;
     }
 
-    public static Deck<Card> createCompletedDeck() {
+    public static Deck<JnCard> createCompletedDeck() {
         return createDeck(CardSymbol.values(), CardValue.values());
     }
 
@@ -48,15 +48,15 @@ public class DeckFactory {
      * (10 sur le dessus du packer)
      * @return le tat des cartes de nombres rouges
      */
-    public static Deck<Card> createHearthDeck() {
+    public static Deck<JnCard> createHearthDeck() {
         return createDeck(HEARTH_SYMBOLS, NUMBER_VALUES);
     }
 
-    public static Deck<Card> createAttackDeck() {
+    public static Deck<JnCard> createAttackDeck() {
         //ajout des nombres noirs
-        Deck<Card> deck = createDeck(ATTACK_SYMBOLS, NUMBER_VALUES);
+        Deck<JnCard> deck = createDeck(ATTACK_SYMBOLS, NUMBER_VALUES);
         //ajout de toutes les têtes
-        DeckFactory.appendCards(deck, CardSymbol.values(), FACE_VALUES);
+        JnDeckFactory.appendCards(deck, CardSymbol.values(), FACE_VALUES);
         return deck;
     }
 

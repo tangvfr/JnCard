@@ -1,4 +1,4 @@
-package fr.tangv.pickdeckcard.model.exception;
+package fr.tangv.pickdeckcard.model.game.exception;
 
 public class GameStatementException extends Exception {
     public GameStatementException(String message) {

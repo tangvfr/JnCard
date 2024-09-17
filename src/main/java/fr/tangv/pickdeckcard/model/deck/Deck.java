@@ -1,12 +1,10 @@
 package fr.tangv.pickdeckcard.model.deck;
 
-import fr.tangv.pickdeckcard.model.card.Card;
-
 /**
  * Pile de carte de structure FIFO(Fisrt In First Out)
  * @param <T> le type de carte utilisé
  */
-public interface Deck<T extends Card> {
+public interface Deck<T> {
 
     /**
      * Permet de mélanger le jeu de cartes

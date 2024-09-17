@@ -1,12 +1,12 @@
 package fr.tangv.pickdeckcard.impl.deck;
 
-import fr.tangv.pickdeckcard.model.card.Card;
 import fr.tangv.pickdeckcard.model.deck.Deck;
 import fr.tangv.pickdeckcard.model.deck.DeckBox;
+import fr.tangv.pickdeckcard.model.game.GameSettings;
 
 import java.util.NoSuchElementException;
 
-public class IDeckBox<T extends Card> implements DeckBox<T> {
+public class IDeckBox<T, S extends GameSettings> extends AbstractCardPoller<T, S> implements DeckBox<T, S> {
 
     private Deck<T> deck;
     private Deck<T> dump;

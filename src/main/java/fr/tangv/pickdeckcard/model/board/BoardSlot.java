@@ -1,10 +1,8 @@
 package fr.tangv.pickdeckcard.model.board;
 
-import fr.tangv.pickdeckcard.model.card.Card;
-
 import java.util.List;
 
-public interface BoardSlot<T extends Card> {
+public interface BoardSlot<T> {
 
     List<T> getAll();
     T getMain();
@@ -16,5 +14,6 @@ public interface BoardSlot<T extends Card> {
     void setBoosted(boolean boosted);
     int calcDurability();
     boolean isBroken();
+    SlotType getSlotType();
 
 }

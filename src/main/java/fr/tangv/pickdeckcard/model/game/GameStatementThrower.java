@@ -1,16 +1,11 @@
 package fr.tangv.pickdeckcard.model.game;
 
-import fr.tangv.pickdeckcard.model.exception.GameStatementException;
+import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
 
 public interface GameStatementThrower {
 
-    <T extends GameStatementException> void throwIfStatement(GameStatement statement, Class<T> exception, String msg) throws T;
-    <T extends GameStatementException> void throwIfNotStatement(GameStatement statement, Class<T> exception, String msg) throws T;
-    default <T extends GameStatementException> void throwIfStatement(GameStatement statement, Class<T> exception) throws T {
-        throwIfStatement(statement, exception, "");
-    }
-    default <T extends GameStatementException> void throwIfNotStatement(GameStatement statement, Class<T> exception) throws T {
-        throwIfNotStatement(statement, exception, "");
-    }
+    GameStatement getStatement();
+    void throwIfStatement(GameStatement statement) throws GameStatementException;
+    void throwIfNotStatement(GameStatement statement) throws GameStatementException;
 
 }

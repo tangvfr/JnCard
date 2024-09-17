@@ -1,32 +1,31 @@
 package fr.tangv.pickdeckcard.model.board;
 
-import fr.tangv.pickdeckcard.model.card.Card;
 import fr.tangv.pickdeckcard.model.deck.DeckBox;
-import fr.tangv.pickdeckcard.model.exception.GameNotStartedException;
-import fr.tangv.pickdeckcard.model.exception.GameNotStartingException;
-import fr.tangv.pickdeckcard.model.game.Game;
-import fr.tangv.pickdeckcard.model.game.GameStatementThrower;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.model.game.CardGame;
+import fr.tangv.pickdeckcard.model.game.GameSettings;
+import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
+import fr.tangv.pickdeckcard.model.util.Updateable;
+import fr.tangv.pickdeckcard.model.util.countdown.Countdown;
 
-public interface GameBoard<T extends Card> extends GameStatementThrower {
+public interface GameBoard<T, S extends GameSettings> extends Updateable {
 
-    Game<T> getGame();
-    GamePlayer<T> getPlayer1();
-    GamePlayer<T> getPlayer2();
+    CardGame<T, S> getGame();
+    void setGame(CardGame<T, S> game);
+    GamePlayer<T, S> getPlayer1();
+    void setPlayer1(GamePlayer<T, S> player);
+    GamePlayer<T, S> getPlayer2();
+    void setPlayer2(GamePlayer<T, S> player);
 
     //players
-    GamePlayer<T> getTurnPlayer() throws GameNotStartedException;
-    void switchPlayerTurn() throws GameNotStartedException;
-
-    //starting
-    void initPlayers(Player player1, Player player2) throws GameNotStartingException;
-    void initDecks() throws GameNotStartingException;
-    void giveCards() throws GameNotStartingException;
-    void calcFirstPlayerTurn() throws GameNotStartingException;
+    Countdown getTurnCountdown();
+    GamePlayer<T, S> getTurnPlayer() throws GameStatementException;
+    void switchPlayerTurn() throws GameStatementException;
 
     //deck
-    DeckBox<T> getMainDeckBox();
-    DeckBox<T> getHearthDeckBox();
+    DeckBox<T, S> getMainDeckBox();
+    void setMainDeckBox(DeckBox<T, S> aDeck);
+    DeckBox<T, S> getHearthDeckBox();
+    void setHearthDeckBox(DeckBox<T, S> aDeck);
 
     //action
     ActionCounter getTurnActionCounter();

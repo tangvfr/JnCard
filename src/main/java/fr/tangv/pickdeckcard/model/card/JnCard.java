@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.model.card;
 
-public interface Card {
+public interface JnCard {
 
     /**
      * Permet de récupérer la valeur de la carte qui est entre 1 et 13 (1 à 10 pour 1 à 10, 11 pour Valet, 12 pour Dame, 13 pour Roi)

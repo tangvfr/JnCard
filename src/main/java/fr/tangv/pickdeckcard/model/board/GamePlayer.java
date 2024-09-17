@@ -1,20 +1,20 @@
 package fr.tangv.pickdeckcard.model.board;
 
-import fr.tangv.pickdeckcard.model.card.Card;
+import fr.tangv.pickdeckcard.model.game.GameSettings;
 import fr.tangv.pickdeckcard.model.player.Player;
 
 import java.util.List;
 
-public interface GamePlayer<T extends Card> {
+public interface GamePlayer<T, S extends GameSettings> {
 
-    GameBoard<T> getBoard();
-    GamePlayer<T> getEnemy();
+    GameBoard<T, S> getBoard();
+    GamePlayer<T, S> getEnemy();
     Player getPlayer();
     List<T> getHand();
-    List<BoardSlot<T>> getHearths();
-    List<BoardSlot<T>> getShields();
+    List<BoardSlot<T>> getSlots(SlotType type);
+    void distribute(T card);
     boolean isDeath();
-    boolean hasShield();
-    int countHearths();
+    void addHand(T card);
+    boolean isAFK();
 
 }

@@ -2,10 +2,14 @@ package fr.tangv.pickdeckcard.impl.card;
 
 import fr.tangv.pickdeckcard.model.card.*;
 import fr.tangv.pickdeckcard.model.card.excpetion.InvalidDataCardException;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.util.Objects;
 
-public class ICard implements Card {
+@Getter
+@EqualsAndHashCode
+public class ICard implements JnCard {
 
     private final CardValue value;
     private final CardSymbol symbol;
@@ -16,18 +20,8 @@ public class ICard implements Card {
     }
 
     @Override
-    public CardValue getValue() {
-        return this.value;
-    }
-
-    @Override
     public CardType getType() {
-        return null;
-    }
-
-    @Override
-    public CardSymbol getSymbol() {
-        return this.symbol;
+        return this.value.getType();
     }
 
     @Override
@@ -62,7 +56,7 @@ public class ICard implements Card {
      * @return la carte crée
      * @throws InvalidDataCardException si le symbole ou la valeur est nulle
      */
-    public static Card createCard(CardValue value, CardSymbol symbol) throws InvalidDataCardException {
+    public static JnCard create(CardValue value, CardSymbol symbol) throws InvalidDataCardException {
         if (value == null) {
             throw new InvalidDataCardException("Value card cannot be null");
         }
@@ -72,18 +66,6 @@ public class ICard implements Card {
         }
 
         return new ICard(value, symbol);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ICard iCard)) return false;
-        return value == iCard.value && symbol == iCard.symbol;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, symbol);
     }
 
 }
