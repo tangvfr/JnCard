@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.impl.action;
 
-import fr.tangv.pickdeckcard.model.action.ActionType;
+import fr.tangv.pickdeckcard.model.action.GameActionType;
 import fr.tangv.pickdeckcard.model.board.BoardSlot;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.card.CardColor;
@@ -21,7 +21,7 @@ public class JnAttackAction extends AbstractTargetAndCardAction<JnCard, JnGameSe
      * @throws IllegalArgumentException si la carte n'est pas noir ou n'est pas de type nombre
      */
     public JnAttackAction(GamePlayer<JnCard, JnGameSettings> executor, JnCard card, BoardSlot<JnCard> slot) {
-        super(ActionType.ATTACK, executor, Set.of(card), slot);
+        super(GameActionType.ATTACK, executor, Set.of(card), slot);
         if (!card.isColor(CardColor.BLACK) || !card.isType(CardType.NUMBER))
             throw new IllegalArgumentException("Card must be BLACK and NUMBER");
 

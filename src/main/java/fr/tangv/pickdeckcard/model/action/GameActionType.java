@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.model.action;
 
-public enum ActionType {
+public enum GameActionType {
     ATTACK,
     SUM_ATTACK,
     DESTRUCTOR,

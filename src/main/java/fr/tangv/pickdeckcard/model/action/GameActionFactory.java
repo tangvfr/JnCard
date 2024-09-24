@@ -7,8 +7,8 @@ import fr.tangv.pickdeckcard.model.game.GameSettings;
 
 import java.util.Set;
 
-public interface ActionSupplier<T extends JnCard, S extends GameSettings> {
+public interface GameActionFactory<T extends JnCard, S extends GameSettings> {
 
-    Action<T> create(ActionType type, GamePlayer<T, S> player, Set<T> cards, BoardSlot<T> target);
+    GameAction<T, S> create(GameActionType type, GamePlayer<T, S> player, Set<T> cards, BoardSlot<T> target);
 
 }

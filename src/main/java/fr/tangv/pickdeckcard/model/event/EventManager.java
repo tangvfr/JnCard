@@ -1,9 +1,12 @@
 package fr.tangv.pickdeckcard.model.event;
 
-public interface EventManager {
+/**
+ * Permet la gestion d'observateur
+ */
+public interface EventManager extends EventExecutor {
 
     void register(Listener listener);
     void unregister(Listener listener);
-    void fire(Event event);
+    boolean isRegistered(Listener listener);
 
 }
