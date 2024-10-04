@@ -1,12 +1,20 @@
 package fr.tangv.pickdeckcard.impl.deck;
 
+import fr.tangv.pickdeckcard.model.board.GameBoard;
+import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.deck.Deck;
 import fr.tangv.pickdeckcard.model.deck.DeckBox;
-import fr.tangv.pickdeckcard.model.game.GameSettings;
+import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
 
 import java.util.NoSuchElementException;
 
-public class IDeckBox<T, S extends GameSettings> extends AbstractCardPoller<T, S> implements DeckBox<T, S> {
+/**
+ * Pioche normale avec défausse associée
+ * @param <T>
+ * @param <S>
+ */
+public class IDeckBox<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
+        extends AbstractCardPoller<T, S, P, B> implements DeckBox<T, S, P, B> {
 
     private Deck<T> deck;
     private Deck<T> dump;

@@ -1,20 +1,31 @@
 package fr.tangv.pickdeckcard.model.board;
 
-import fr.tangv.pickdeckcard.model.game.GameSettings;
+import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
 import fr.tangv.pickdeckcard.model.player.Player;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-public interface GamePlayer<T, S extends GameSettings> {
+public interface GamePlayer<T, S extends GameSettings, P extends GamePlayer<T, S, P, G>, G extends GameBoard<T, S, P, G>> {
 
-    GameBoard<T, S> getBoard();
-    GamePlayer<T, S> getEnemy();
+    void init(G gameBoard, P enemy, Player player);
+    G getGameBoard();
+    P getEnemy();
     Player getPlayer();
-    List<T> getHand();
-    List<BoardSlot<T>> getSlots(SlotType type);
     void distribute(T card);
     boolean isDeath();
-    void addHand(T card);
-    boolean isAFK();
+
+    //hand
+    List<T> getHand();
+    boolean removeHand(T card);
+    boolean removeIfHand(Predicate<T> predicate);
+    void removeAllHand();
+
+    //afk
+    GPAfkState isAfk();
+    /**
+     * Permet de signaler que le joueur a fait une action et qu'il n'est pas AFK
+     */
+    void noAFK();
 
 }

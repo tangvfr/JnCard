@@ -1,20 +1,26 @@
 package fr.tangv.pickdeckcard.impl.deck;
 
+import fr.tangv.pickdeckcard.model.board.GameBoard;
+import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.deck.Deck;
 import fr.tangv.pickdeckcard.model.deck.DeckBox;
-import fr.tangv.pickdeckcard.model.card.JnCard;
-import fr.tangv.pickdeckcard.model.game.GameSettings;
+import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
 
-import javax.smartcardio.Card;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class PollerDeckBox<T, S extends GameSettings> extends IDeckBox<T, S> {
+/**
+ * Pioche normale avec défausse associée, qui pioche automatiquement dans une autre pioche x carte en cas de remix
+ * @param <T>
+ * @param <S>
+ */
+public class PollerDeckBox<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
+        extends IDeckBox<T, S, P, B> {
 
-    private final DeckBox<T, S> polled;
+    private final DeckBox<T, S, P, B> polled;
     private final int pollNumber;
 
-    private PollerDeckBox(DeckBox<T, S> polled, int pollNumber) {
+    private PollerDeckBox(DeckBox<T, S, P, B> polled, int pollNumber) {
         this.polled = polled;
         this.pollNumber = pollNumber;
     }
@@ -39,7 +45,8 @@ public class PollerDeckBox<T, S extends GameSettings> extends IDeckBox<T, S> {
         deck.mix();
     }
 
-    public static <T, S extends GameSettings> PollerDeckBox<T, S> create(DeckBox<T, S> polled, int pollNumber) {
+    public static <T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
+    PollerDeckBox<T, S, P, B> create(DeckBox<T, S, P, B> polled, int pollNumber) {
         Objects.requireNonNull(polled, "polled cannot be null");
         if (pollNumber <= 0) {
             throw new IllegalArgumentException("pollNumber must be greater than 0");

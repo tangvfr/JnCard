@@ -3,10 +3,15 @@ package fr.tangv.pickdeckcard.impl.event;
 import fr.tangv.pickdeckcard.model.event.GameEvent;
 import fr.tangv.pickdeckcard.model.game.Game;
 import lombok.Getter;
+import lombok.NonNull;
 
-public class AbstractGameEvent implements GameEvent {
+@Getter
+public abstract class AbstractGameEvent<T extends Game> implements GameEvent<T> {
 
-    @Getter
-    private Game game;
+    private final T game;
+
+    public AbstractGameEvent(@NonNull T game) {
+        this.game = game;
+    }
 
 }
