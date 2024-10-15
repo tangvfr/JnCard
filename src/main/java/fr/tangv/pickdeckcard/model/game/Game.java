@@ -5,10 +5,11 @@ import fr.tangv.pickdeckcard.model.util.Cyclable;
 /**
  * Représente un jeu
  */
-public interface Game extends Cyclable {
+public interface Game extends Cyclable, GameStatementThrower {
 
     String getId();
     GameStatement getStatement();
-    GameStatement isStatement(GameStatement statement);
+    void setStatement(GameStatement statement);
+    boolean isStatement(GameStatement statement);
 
 }

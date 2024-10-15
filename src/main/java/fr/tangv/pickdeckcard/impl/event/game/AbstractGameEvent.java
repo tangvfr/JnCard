@@ -1,4 +1,4 @@
-package fr.tangv.pickdeckcard.impl.event;
+package fr.tangv.pickdeckcard.impl.event.game;
 
 import fr.tangv.pickdeckcard.model.event.GameEvent;
 import fr.tangv.pickdeckcard.model.game.Game;

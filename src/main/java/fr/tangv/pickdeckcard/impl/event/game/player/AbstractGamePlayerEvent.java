@@ -1,5 +1,6 @@
-package fr.tangv.pickdeckcard.impl.event;
+package fr.tangv.pickdeckcard.impl.event.game.player;
 
+import fr.tangv.pickdeckcard.impl.event.game.AbstractGameEvent;
 import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.game.CardGame;

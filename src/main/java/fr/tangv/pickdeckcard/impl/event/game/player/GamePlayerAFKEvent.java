@@ -1,4 +1,4 @@
-package fr.tangv.pickdeckcard.impl.event;
+package fr.tangv.pickdeckcard.impl.event.game.player;
 
 import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
@@ -8,14 +8,14 @@ import lombok.Getter;
 import lombok.NonNull;
 
 @Getter
-public class GamePlayerEndTurnEvent<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
+public class GamePlayerAFKEvent<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
         extends AbstractGamePlayerEvent<T, S, P, B> {
 
-    private final boolean endTime;
+    private boolean punish;
 
-    public GamePlayerEndTurnEvent(@NonNull CardGame<T, S, P, B> game, @NonNull P player, boolean endTime) {
+    public GamePlayerAFKEvent(@NonNull CardGame<T, S, P, B> game, @NonNull P player, boolean punish) {
         super(game, player);
-        this.endTime = endTime;
+        this.punish = punish;
     }
 
 }

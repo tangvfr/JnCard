@@ -1,7 +1,7 @@
 package fr.tangv.pickdeckcard.impl.board;
 
-import fr.tangv.pickdeckcard.impl.event.GamePlayerAFKEvent;
-import fr.tangv.pickdeckcard.impl.event.GamePlayerEndTurnEvent;
+import fr.tangv.pickdeckcard.impl.event.game.player.GamePlayerAFKEvent;
+import fr.tangv.pickdeckcard.impl.event.game.player.GamePlayerEndTurnEvent;
 import fr.tangv.pickdeckcard.impl.util.CountdownFactory;
 import fr.tangv.pickdeckcard.impl.util.ICounter;
 import fr.tangv.pickdeckcard.model.board.GameBoard;

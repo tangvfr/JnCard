@@ -1,5 +1,7 @@
 package fr.tangv.pickdeckcard.model.game;
 
+import fr.tangv.pickdeckcard.model.action.Action;
+import fr.tangv.pickdeckcard.model.action.exception.ForbidenActionException;
 import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
@@ -17,16 +19,25 @@ import java.util.Collection;
  * @param <B> le type de plateau utilisé
  */
 public interface CardGame<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
-        extends EventGame, GameStatementThrower {
+        extends EventGame {
 
     Player getPlayer1();
+    void setPlayer1(Player player);
+
     Player getPlayer2();
+    void setPlayer2(Player player);
+
     Collection<Player> getObservers();
+    void addObserver(Player player);
+    boolean removeObserver(Player player);
+
     S getSettings();
+    void setSettings(S settings);
+
     Countdown getGameCountdown();
     B getBoard() throws GameStatementException;
     P getWinner() throws GameStatementException;
-    void start() throws GameStatementException;
     void setWinner(P winner) throws GameStatementException;
+    void play(Action aAction) throws ForbidenActionException, GameStatementException;
 
 }
