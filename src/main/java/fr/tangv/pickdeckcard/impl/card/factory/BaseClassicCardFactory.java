@@ -11,7 +11,7 @@ public abstract class BaseClassicCardFactory<T extends ClassicCard> implements C
     @Override
     public T create(CardValue value, CardSymbol symbol) {
         this.check(value, symbol);
-        return this.newInstance(value, symbol);
+        return this.createCard(value, symbol);
     }
 
     protected void check(CardValue value, CardSymbol symbol) {
@@ -24,6 +24,6 @@ public abstract class BaseClassicCardFactory<T extends ClassicCard> implements C
         }
     }
 
-    protected abstract T newInstance(CardValue value, CardSymbol symbol);
+    protected abstract T createCard(CardValue value, CardSymbol symbol);
 
 }

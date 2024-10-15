@@ -9,7 +9,7 @@ import fr.tangv.pickdeckcard.model.card.JnCard;
 public class IJnCardFactory extends BaseClassicCardFactory<JnCard> {
 
     @Override
-    protected JnCard newInstance(CardValue value, CardSymbol symbol) {
+    protected JnCard createCard(CardValue value, CardSymbol symbol) {
         return new IJnCard(value, symbol);
     }
 

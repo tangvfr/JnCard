@@ -8,7 +8,7 @@ import fr.tangv.pickdeckcard.model.card.ClassicCard;
 public class IClassicCardFactory extends BaseClassicCardFactory<ClassicCard> {
 
     @Override
-    protected ClassicCard newInstance(CardValue value, CardSymbol symbol) {
+    protected ClassicCard createCard(CardValue value, CardSymbol symbol) {
         return new IClassicCard(value, symbol);
     }
 

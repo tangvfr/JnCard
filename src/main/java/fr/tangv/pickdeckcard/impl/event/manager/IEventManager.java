@@ -15,7 +15,7 @@ public class IEventManager implements EventManager {
     private static final Class<EventAnnotation> EVENT_ANNOTATION = EventAnnotation.class;
 
     private Set<Listener> registeredListeners = new HashSet<>();
-    private Map<Class<? extends Event>, SortedSet<EventManagerObserver>> registeredObserver = new HashMap<>();
+    private Map<String, SortedSet<EventManagerObserver>> registeredObserver = new TreeMap<>();
 
     @Override
     public void register(Listener listener) {
@@ -39,7 +39,7 @@ public class IEventManager implements EventManager {
      * @return l'ensemble d'observer d'évent associé au type d'évent
      */
     private SortedSet<EventManagerObserver> getObserverSet(Class<? extends Event> eventClass) {
-        return this.registeredObserver.computeIfAbsent(eventClass, k -> new TreeSet<>());
+        return this.registeredObserver.computeIfAbsent(eventClass.getName(), k -> new TreeSet<>());
     }
 
     private void appendObserver(Listener listener, Method method) {

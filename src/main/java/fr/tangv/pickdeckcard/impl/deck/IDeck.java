@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class IDeck<T> implements Deck<T> {
 
-    private Deque<T> cards;
+    Deque<T> cards;
 
     @Override
     public void mix() {

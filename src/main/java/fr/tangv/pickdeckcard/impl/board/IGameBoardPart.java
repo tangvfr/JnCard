@@ -4,18 +4,16 @@ import fr.tangv.pickdeckcard.model.board.GameBoardPart;
 import fr.tangv.pickdeckcard.model.board.slot.BoardSlot;
 import fr.tangv.pickdeckcard.model.board.slot.BoardSlotFactory;
 import fr.tangv.pickdeckcard.model.board.slot.SlotType;
-import lombok.RequiredArgsConstructor;
 
 import java.util.*;
 import java.util.function.Predicate;
 
-@RequiredArgsConstructor
-public class IGameBoardPart<T, B extends BoardSlot<T>> implements GameBoardPart<T, B> {
+public abstract class IGameBoardPart<T, B extends BoardSlot<T>> implements GameBoardPart<T, B> {
 
     private static final int DEFAULT_SIZE_SLOTS = 10;
-
-    private final BoardSlotFactory<T, B> boardSlotFactory;
     private final Map<SlotType, List<B>> slots = new HashMap<>();
+
+    public abstract BoardSlotFactory<T, B> getBoardSlotFactory();
 
     private List<B> getInstanceOfSlots(SlotType type) {
         return this.slots.computeIfAbsent(type, k -> new ArrayList<>(DEFAULT_SIZE_SLOTS));
@@ -44,7 +42,7 @@ public class IGameBoardPart<T, B extends BoardSlot<T>> implements GameBoardPart<
     @Override
     public B appendSlot(SlotType type) {
         List<B> list = this.getInstanceOfSlots(type);
-        B slot = this.boardSlotFactory.create(type);
+        B slot = this.getBoardSlotFactory().create(type);
         list.add(slot);
         return slot;
     }

@@ -8,33 +8,33 @@ import org.junit.jupiter.api.Test;
 
 class EventManagerTest {
 
-    @Data class TestEvent1 implements Event {int value = 0;}
-    @Data class TestEvent2 implements Event {String text = "";}
-    class TestListenner1 implements Listener {
-        @EventAnnotation(event = TestEvent1.class)
-        void event1(TestEvent1 event) {
+    @Data class TestEventInt implements Event {int value = 0;}
+    @Data class TestEventStr implements Event {String text = "no";}
+    public class TestListenner1 implements Listener {
+        @EventAnnotation(event = TestEventInt.class)
+        public void event1(TestEventInt event) {
             event.value += 10;
         }
-        @EventAnnotation(event = TestEvent2.class)
-        void event2(TestEvent2 event) {
+        @EventAnnotation(event = TestEventStr.class)
+        public void event2(TestEventStr event) {
             event.text = "fired";
         }
     }
-    class TestListenner2 implements Listener {
-        @EventAnnotation(event = TestEvent1.class)
-        void event1(TestEvent1 event) {
+    public class TestListenner2 implements Listener {
+        @EventAnnotation(event = TestEventInt.class)
+        public void event1(TestEventInt event) {
             event.value += 5;
         }
     }
-    class TestListennerPH implements Listener {
-        @EventAnnotation(event = TestEvent1.class, priority = EventPriority.HIGH)
-        void event1(TestEvent1 event) {
+    public class TestListennerPH implements Listener {
+        @EventAnnotation(event = TestEventInt.class, priority = EventPriority.HIGH)
+        public void event1(TestEventInt event) {
             event.value *= 5;
         }
     }
-    class TestListennerPL implements Listener {
-        @EventAnnotation(event = TestEvent1.class, priority = EventPriority.LOW)
-        void event1(TestEvent1 event) {
+    public class TestListennerPL implements Listener {
+        @EventAnnotation(event = TestEventInt.class, priority = EventPriority.LOW)
+        public void event1(TestEventInt event) {
             event.value *= 5;
         }
     }
@@ -90,7 +90,31 @@ class EventManagerTest {
 
     @Test
     void fire() {
+        eventManager.register(new TestListenner1());
+        TestEventStr event = new TestEventStr();
+        //test
+        Assertions.assertDoesNotThrow(() -> eventManager.fire(event));
+        Assertions.assertEquals("fired", event.getText());
+    }
 
+    @Test
+    void firePriorityLow() {
+        eventManager.register(new TestListenner2());
+        eventManager.register(new TestListennerPL());
+        TestEventInt event = new TestEventInt();
+        //test
+        Assertions.assertDoesNotThrow(() -> eventManager.fire(event));
+        Assertions.assertEquals(25, event.getValue());
+    }
+
+    @Test
+    void firePriorityHigh() {
+        eventManager.register(new TestListenner2());
+        eventManager.register(new TestListennerPH());
+        TestEventInt event = new TestEventInt();
+        //test
+        Assertions.assertDoesNotThrow(() -> eventManager.fire(event));
+        Assertions.assertEquals(5, event.getValue());
     }
 
 }
