@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.model.card;
 
-import fr.tangv.pickdeckcard.model.card.excpetion.ParseCardException;
+import fr.tangv.pickdeckcard.api.model.exception.card.ParseCardException;
 
 public enum CardSymbol {
 

@@ -23,6 +23,11 @@ public interface Deck<T> {
      * @throws java.util.NoSuchElementException si plus de carte dans la pile
      */
     T remove();
+
+    /**
+     * Permet d'ajouter une carte sur la pile de carte
+     * @param card la carte ajouter
+     */
     void add(T card);
 
     /**

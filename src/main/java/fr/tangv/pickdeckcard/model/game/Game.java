@@ -1,12 +1,15 @@
 package fr.tangv.pickdeckcard.model.game;
 
-import fr.tangv.pickdeckcard.model.util.Stoppable;
-import fr.tangv.pickdeckcard.model.util.Updateable;
+import fr.tangv.pickdeckcard.model.util.Cyclable;
 
-public interface Game extends Updateable, Stoppable {
+/**
+ * Représente un jeu
+ */
+public interface Game extends Cyclable, GameStatementThrower {
 
     String getId();
     GameStatement getStatement();
-    GameStatement isStatement(GameStatement statement);
+    void setStatement(GameStatement statement);
+    boolean isStatement(GameStatement statement);
 
 }

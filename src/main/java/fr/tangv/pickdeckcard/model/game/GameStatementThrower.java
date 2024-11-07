@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.model.game;
 
-import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
+import fr.tangv.pickdeckcard.model.exception.game.GameStatementException;
 
 public interface GameStatementThrower {
 

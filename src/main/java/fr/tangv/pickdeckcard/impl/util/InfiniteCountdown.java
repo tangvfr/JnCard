@@ -1,6 +1,6 @@
 package fr.tangv.pickdeckcard.impl.util;
 
-import fr.tangv.pickdeckcard.model.util.countdown.Countdown;
+import fr.tangv.pickdeckcard.model.util.Countdown;
 
 public class InfiniteCountdown implements Countdown {
 

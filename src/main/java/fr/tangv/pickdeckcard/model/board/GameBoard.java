@@ -1,34 +1,29 @@
 package fr.tangv.pickdeckcard.model.board;
 
-import fr.tangv.pickdeckcard.model.deck.DeckBox;
 import fr.tangv.pickdeckcard.model.game.CardGame;
-import fr.tangv.pickdeckcard.model.game.GameSettings;
-import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
+import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
+import fr.tangv.pickdeckcard.model.util.Counter;
+import fr.tangv.pickdeckcard.model.util.Initializable;
 import fr.tangv.pickdeckcard.model.util.Updateable;
-import fr.tangv.pickdeckcard.model.util.countdown.Countdown;
+import fr.tangv.pickdeckcard.model.util.Countdown;
 
-public interface GameBoard<T, S extends GameSettings> extends Updateable {
+public interface GameBoard<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
+        extends Updateable, Initializable {
 
-    CardGame<T, S> getGame();
-    void setGame(CardGame<T, S> game);
-    GamePlayer<T, S> getPlayer1();
-    void setPlayer1(GamePlayer<T, S> player);
-    GamePlayer<T, S> getPlayer2();
-    void setPlayer2(GamePlayer<T, S> player);
+    CardGame<T, S, P, B> getGame();
+    void setGame(CardGame<T, S, P, B> game);
+    P getPlayer1();
+    void setPlayer1(P player);
+    P getPlayer2();
+    void setPlayer2(P player);
 
     //players
     Countdown getTurnCountdown();
-    GamePlayer<T, S> getTurnPlayer() throws GameStatementException;
-    void switchPlayerTurn() throws GameStatementException;
-
-    //deck
-    DeckBox<T, S> getMainDeckBox();
-    void setMainDeckBox(DeckBox<T, S> aDeck);
-    DeckBox<T, S> getHearthDeckBox();
-    void setHearthDeckBox(DeckBox<T, S> aDeck);
+    P getTurnPlayer();
+    void switchPlayerTurn();
 
     //action
-    ActionCounter getTurnActionCounter();
-    ActionCounter getPlayedActionCounter();
+    Counter getTurnActionCounter();
+    Counter getPlayedActionCounter();
 
 }

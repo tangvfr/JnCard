@@ -1,14 +1,15 @@
 package fr.tangv.pickdeckcard.model.deck;
 
+import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
-import fr.tangv.pickdeckcard.model.deck.exception.EmptyDeckException;
-import fr.tangv.pickdeckcard.model.game.GameSettings;
+import fr.tangv.pickdeckcard.model.exception.deck.EmptyDeckException;
+import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
 
 /**
  * Permet de gérer le piochage des cartes et de les mettre dans le bon emplacement du joueur
  * @param <T> le type de carte utilisé
  */
-public interface CardPoller<T, S extends GameSettings> {
+public interface CardPoller<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>> {
 
     /**
      * Permet de faire piocher "amount" carte à un joueur
@@ -16,14 +17,14 @@ public interface CardPoller<T, S extends GameSettings> {
      * @param amount le nombre de cartes piochées
      * @throws EmptyDeckException si plus de carte a piocher deck
      */
-    void playerPollCard(GamePlayer<T, S> player, int amount) throws EmptyDeckException;
+    void playerPollCard(P player, int amount) throws EmptyDeckException;
 
     /**
      * Permet de faire piocher une carte à un joueur
      * @param player le joueur
      * @throws EmptyDeckException si plus de carte a piocher deck
      */
-    void playerPollCard(GamePlayer<T, S> player) throws EmptyDeckException;
+    void playerPollCard(P player) throws EmptyDeckException;
 
     /**
      * Permet de récupérer une carte de la pioche

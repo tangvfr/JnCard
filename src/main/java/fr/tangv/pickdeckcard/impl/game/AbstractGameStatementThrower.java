@@ -2,10 +2,7 @@ package fr.tangv.pickdeckcard.impl.game;
 
 import fr.tangv.pickdeckcard.model.game.GameStatement;
 import fr.tangv.pickdeckcard.model.game.GameStatementThrower;
-import fr.tangv.pickdeckcard.model.game.exception.GameStatementException;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import fr.tangv.pickdeckcard.model.exception.game.GameStatementException;
 
 public abstract class AbstractGameStatementThrower implements GameStatementThrower {
 

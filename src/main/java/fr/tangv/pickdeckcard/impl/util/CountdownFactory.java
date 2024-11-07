@@ -1,6 +1,7 @@
 package fr.tangv.pickdeckcard.impl.util;
 
-import fr.tangv.pickdeckcard.model.util.countdown.Countdown;
+import fr.tangv.pickdeckcard.model.exception.countdown.CountdownNotStoppedException;
+import fr.tangv.pickdeckcard.model.util.Countdown;
 
 public abstract class CountdownFactory {
 
@@ -19,12 +20,11 @@ public abstract class CountdownFactory {
      * @return le compte à rebours crée
      */
     public static Countdown createCountdown(long duration) {
-        throw new RuntimeException("Not yet implemented");
-        /*try {
-            return new ICountdown.setDuration(duration);
+        try {
+            return new ICountdown().setDuration(duration);
         } catch (CountdownNotStoppedException e) {
-            throw new RuntimeException(e);//n'est théoriquement pas censé arriver
-        }*/
+            throw new RuntimeException(e);//n'est théoriquement pas possible
+        }
     }
 
     /**
