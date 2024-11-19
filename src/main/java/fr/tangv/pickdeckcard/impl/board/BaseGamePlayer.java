@@ -4,7 +4,7 @@ import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.board.GPAfkState;
 import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.core.user.Player;
 import lombok.Getter;
 
 import java.util.ArrayList;

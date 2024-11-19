@@ -1,11 +1,11 @@
-package fr.tangv.pickdeckcard.api.model;
+package fr.tangv.pickdeckcard.api.model.intern;
 
 import fr.tangv.pickdeckcard.model.game.Game;
 import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.core.user.Player;
 
 /**
- * Permet d'interagir avec le model de jeu de carte
+ * Permet d'interagir avec gestionnaire de partie
  * @param <T> Type de partie géré
  * @param <S> Type de paramétrage pour les parties
  */

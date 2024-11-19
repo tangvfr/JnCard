@@ -9,8 +9,9 @@ import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.game.CardGame;
 import fr.tangv.pickdeckcard.model.game.GameStatement;
 import fr.tangv.pickdeckcard.model.exception.game.GameStatementException;
+import fr.tangv.pickdeckcard.model.game.GameType;
 import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.model.player.ConnectedPlayer;
 import fr.tangv.pickdeckcard.model.util.Countdown;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,15 +30,16 @@ import java.util.List;
 public abstract class BaseCardGame<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
         extends BaseEventGame implements CardGame<T, S, P, B> {
 
+    @Getter @Setter GameType gameType;
     //init in init()
     @Getter Countdown gameCountdown;
-    Collection<Player> observers = new LinkedList<>();
+    Collection<ConnectedPlayer> observers = new LinkedList<>();
     //init before finish()
     P winner = null;
 
     //init before init()
-    @Getter @Setter Player player1 = null;
-    @Getter @Setter Player player2 = null;
+    @Getter @Setter ConnectedPlayer player1 = null;
+    @Getter @Setter ConnectedPlayer player2 = null;
     @Getter @Setter S settings = null;
     B board = null;
 
@@ -48,17 +50,17 @@ public abstract class BaseCardGame<T, S extends GameSettings, P extends GamePlay
     }
 
     @Override
-    public Collection<Player> getObservers() {
+    public Collection<ConnectedPlayer> getObservers() {
         return List.copyOf(this.observers);
     }
 
     @Override
-    public boolean removeObserver(Player player) {
+    public boolean removeObserver(ConnectedPlayer player) {
         return this.observers.remove(player);
     }
 
     @Override
-    public void addObserver(Player player) {
+    public void addObserver(ConnectedPlayer player) {
         this.observers.add(player);
     }
 

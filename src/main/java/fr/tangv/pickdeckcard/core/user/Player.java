@@ -1,4 +1,4 @@
-package fr.tangv.pickdeckcard.model.player;
+package fr.tangv.pickdeckcard.core.user;
 
 public interface Player {
 

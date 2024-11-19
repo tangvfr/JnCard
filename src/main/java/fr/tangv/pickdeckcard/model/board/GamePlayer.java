@@ -1,7 +1,8 @@
 package fr.tangv.pickdeckcard.model.board;
 
 import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.model.player.ConnectedPlayer;
+import fr.tangv.pickdeckcard.core.user.Player;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -11,7 +12,7 @@ public interface GamePlayer<T, S extends GameSettings, P extends GamePlayer<T, S
     void init(G gameBoard, P enemy, Player player);
     G getGameBoard();
     P getEnemy();
-    Player getPlayer();
+    ConnectedPlayer getPlayer();
     void distribute(T card);
     boolean isDeath();
 

@@ -6,7 +6,7 @@ import fr.tangv.pickdeckcard.model.board.GameBoard;
 import fr.tangv.pickdeckcard.model.board.GamePlayer;
 import fr.tangv.pickdeckcard.model.exception.game.GameStatementException;
 import fr.tangv.pickdeckcard.model.game.settings.GameSettings;
-import fr.tangv.pickdeckcard.model.player.Player;
+import fr.tangv.pickdeckcard.model.player.ConnectedPlayer;
 import fr.tangv.pickdeckcard.model.util.Countdown;
 
 import java.util.Collection;
@@ -21,15 +21,18 @@ import java.util.Collection;
 public interface CardGame<T, S extends GameSettings, P extends GamePlayer<T, S, P, B>, B extends GameBoard<T, S, P, B>>
         extends EventGame {
 
-    Player getPlayer1();
-    void setPlayer1(Player player);
+    ConnectedPlayer getPlayer1();
+    void setPlayer1(ConnectedPlayer player);
 
-    Player getPlayer2();
-    void setPlayer2(Player player);
+    ConnectedPlayer getPlayer2();
+    void setPlayer2(ConnectedPlayer player);
 
-    Collection<Player> getObservers();
-    void addObserver(Player player);
-    boolean removeObserver(Player player);
+    Collection<ConnectedPlayer> getObservers();
+    void addObserver(ConnectedPlayer player);
+    boolean removeObserver(ConnectedPlayer player);
+
+    GameType getGameType();
+    void setGameType(GameType gameType);
 
     S getSettings();
     void setSettings(S settings);

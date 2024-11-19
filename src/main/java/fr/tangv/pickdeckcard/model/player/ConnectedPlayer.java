@@ -1,8 +1,11 @@
 package fr.tangv.pickdeckcard.model.player;
 
-public interface ConnectedPlayer {
+import fr.tangv.pickdeckcard.core.user.Player;
+
+public interface ConnectedPlayer extends PacketReceiver {
 
     Player getPlayer();
-    Connection getConnection();
+    PlayerConnection getConnection();
+    boolean isConnected();
 
 }
